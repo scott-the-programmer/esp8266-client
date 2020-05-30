@@ -1,12 +1,65 @@
+#include <ESP8266WiFi.h>
+#include "FS.h"
+#include <LittleFS.h>
 
+#include "api-repository.h"
 
-void setup() {
+ApiRepository api = ApiRepository("http://jsonplaceholder.typicode.com/users/1");
+
+void setup()
+{
+    setupLed();
+    setupSerial();
+    setupWifi();
+}
+
+void loop()
+{
+    if (WiFi.status() == WL_CONNECTED)
+    {
+        api.send();
+        digitalWrite(LED_BUILTIN, HIGH);
+        delay(5000);
+    }
+
+    digitalWrite(LED_BUILTIN, LOW);
+    delay(5000);
+}
+
+void setupLed()
+{
     pinMode(LED_BUILTIN, OUTPUT);
 }
 
-void loop() {
-    digitalWrite(LED_BUILTIN, HIGH);
-    delay(1000);
-    digitalWrite(LED_BUILTIN, LOW);
-    delay(1000);
+void setupSerial()
+{
+
+    Serial.begin(9600);
+    while (!Serial)
+    {
+        ; // wait for serial port to connect. Needed for native USB port only
+    }
+}
+
+void setupWifi()
+{
+#include "values.h"
+    WiFi.begin(ssid, password);
+
+    while (WiFi.status() != WL_CONNECTED)
+    {
+        delay(1000);
+        Serial.println("Connecting...");
+    }
+}
+
+void setupFileSystem()
+{
+    Serial.println("Mounting FS...");
+
+    if (!LittleFS.begin())
+    {
+        Serial.println("Failed to mount file system");
+        return;
+    }
 }

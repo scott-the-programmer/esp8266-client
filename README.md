@@ -32,7 +32,7 @@ Take note of the port that you want to use, in this case, `/dev/cu.usbserial-143
 Run the following script to compile and run the code
 
 ```bash
-./run.sh "/dev/cu.usbserial-143120"
+./run.sh "/dev/cu.usbserial-143120" "SSID" "password"
 ```
 
 Example output
@@ -40,11 +40,11 @@ Example output
 ```bash
 Compiling code
 Executable segment sizes:
-IROM   : 228492          - code in flash         (default or ICACHE_FLASH_ATTR) 
-IRAM   : 26784   / 32768 - code in IRAM          (ICACHE_RAM_ATTR, ISRs...) 
-DATA   : 1248  )         - initialized variables (global, static) in RAM/HEAP 
-RODATA : 688   ) / 81920 - constants             (global, static) in RAM/HEAP 
-BSS    : 24880 )         - zeroed variables      (global, static) in RAM/HEAP 
+IROM   : 228492          - code in flash         (default or ICACHE_FLASH_ATTR)
+IRAM   : 26784   / 32768 - code in IRAM          (ICACHE_RAM_ATTR, ISRs...)
+DATA   : 1248  )         - initialized variables (global, static) in RAM/HEAP
+RODATA : 688   ) / 81920 - constants             (global, static) in RAM/HEAP
+BSS    : 24880 )         - zeroed variables      (global, static) in RAM/HEAP
 Sketch uses 257212 bytes (24%) of program storage space. Maximum is 1044464 bytes.
 Global variables use 26816 bytes (32%) of dynamic memory, leaving 55104 bytes for local variables. Maximum is 81920 bytes.
 Deploying code to esp8266:esp8266:nodemcuv2:xtal=80  on /dev/cu.usbserial-143120
@@ -67,4 +67,10 @@ Hash of data verified.
 
 Leaving...
 Hard resetting via RTS pin...
+```
+
+Run the following command to read the serial output
+
+```bash
+cat < "/dev/cu.usbserial-143120"
 ```
