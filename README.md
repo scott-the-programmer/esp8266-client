@@ -1,8 +1,6 @@
 # Humidity Sensor
 
-A simple program that measures the humidity in the air
-
-Soley for the ESP8266 board
+A simple program for the ESP8266 board
 
 ## Prerequisites
 

@@ -1,5 +1,4 @@
 #Compiled binaries
 *.esp8266.*
 .vscode
-sensor/config.json
-sensor/values.h
+esp8266/values.h

@@ -1,7 +1,4 @@
 #include <ESP8266WiFi.h>
-#include "FS.h"
-#include <LittleFS.h>
-
 #include "api-repository.h"
 
 ApiRepository api = ApiRepository("http://jsonplaceholder.typicode.com/users/1");
@@ -50,16 +47,5 @@ void setupWifi()
     {
         delay(1000);
         Serial.println("Connecting...");
-    }
-}
-
-void setupFileSystem()
-{
-    Serial.println("Mounting FS...");
-
-    if (!LittleFS.begin())
-    {
-        Serial.println("Failed to mount file system");
-        return;
     }
 }

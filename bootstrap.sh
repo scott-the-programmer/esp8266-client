@@ -7,6 +7,3 @@ arduino-cli board list
 
 echo "Updating arduino index"
 arduino-cli core update-index
-
-echo "Installing libraries"
-arduino-cli lib install "ArduinoJson" 
