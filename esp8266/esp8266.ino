@@ -36,6 +36,7 @@ void loop()
 
 void setupLed()
 {
+    pinMode(LED_BUILTIN, OUTPUT);
 }
 
 void setupSerial()
