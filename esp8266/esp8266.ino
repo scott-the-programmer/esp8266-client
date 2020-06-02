@@ -1,7 +1,10 @@
 #include <ESP8266WiFi.h>
 #include "api-repository.h"
 
-ApiRepository api = ApiRepository("http://jsonplaceholder.typicode.com/users/1");
+#include "health-check-endpoint.h"
+#include "values.h"
+
+ApiRepository api = ApiRepository(endpoint);
 
 void setup()
 {
@@ -12,20 +15,29 @@ void setup()
 
 void loop()
 {
-    if (WiFi.status() == WL_CONNECTED)
+    if (WiFi.status() != WL_CONNECTED)
     {
-        api.send();
+        return;
+    }
+
+    bool healthy = api.send();
+
+    if (healthy)
+    {
+        Serial.println("healthy");
+        digitalWrite(LED_BUILTIN, LOW);
+        delay(5000);
+    }
+    else
+    {
+        Serial.println("unhealthy");
         digitalWrite(LED_BUILTIN, HIGH);
         delay(5000);
     }
-
-    digitalWrite(LED_BUILTIN, LOW);
-    delay(5000);
 }
 
 void setupLed()
 {
-    pinMode(LED_BUILTIN, OUTPUT);
 }
 
 void setupSerial()
@@ -40,7 +52,6 @@ void setupSerial()
 
 void setupWifi()
 {
-#include "values.h"
     WiFi.begin(ssid, password);
 
     while (WiFi.status() != WL_CONNECTED)

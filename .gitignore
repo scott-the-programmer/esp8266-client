@@ -2,3 +2,4 @@
 *.esp8266.*
 .vscode
 esp8266/values.h
+esp8266/health-check-endpoint.h

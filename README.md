@@ -1,6 +1,6 @@
-# Humidity Sensor
+# ESP8266 Http Health Check
 
-A simple program for the ESP8266 board
+A simple health checker that flashes an LED based on whether an endpoint is healthy or not
 
 ## Prerequisites
 
@@ -30,7 +30,7 @@ Take note of the port that you want to use, in this case, `/dev/cu.usbserial-143
 Run the following script to compile and run the code
 
 ```bash
-./run.sh "/dev/cu.usbserial-143120" "SSID" "password"
+./run.sh "/dev/cu.usbserial-143120" "http://jsonplaceholder.typicode.com/users/1" "SSID" "password"
 ```
 
 Example output

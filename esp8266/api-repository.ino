@@ -8,17 +8,22 @@ ApiRepository::ApiRepository(char *url)
     _url = url;
 }
 
-void ApiRepository::send()
+bool ApiRepository::send()
 {
     HTTPClient http;
 
+    bool ret = false;
+
     http.begin(_url);
+
     int httpCode = http.GET();
 
-    if (httpCode > 0)
+    if (httpCode >= 200 && httpCode < 300) //Returned successful error code
     {
-        String payload = http.getString();
-        Serial.println(payload);
+        ret = true;
     }
+
     http.end();
+
+    return ret;
 }

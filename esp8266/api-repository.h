@@ -8,7 +8,7 @@ class ApiRepository
 {
 public:
   ApiRepository(char* url);
-  void send();
+  bool send();
 
 private:
   char* _url;
