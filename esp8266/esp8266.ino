@@ -24,15 +24,13 @@ void loop()
 
     if (healthy)
     {
-        Serial.println("healthy");
         digitalWrite(LED_BUILTIN, LOW);
-        delay(5000);
+        delay(2000);
     }
     else
     {
-        Serial.println("unhealthy");
         digitalWrite(LED_BUILTIN, HIGH);
-        delay(5000);
+        delay(2000);
     }
 }
 
