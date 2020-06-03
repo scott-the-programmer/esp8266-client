@@ -83,5 +83,5 @@ Hard resetting via RTS pin...
 Run the following command to read the serial output
 
 ```bash
-cat < "/dev/cu.usbserial-143120"
+cat < "/dev/cu.usbserial-14320"
 ```
