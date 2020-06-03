@@ -8,6 +8,7 @@ Supports both http and https endpoints
 
 * [Arduino CLI](https://arduino.github.io/arduino-cli/installation/)
 * CP210x USB to UART Bridge VCP Driver
+* openssl
 
 ## Getting Started
 
@@ -22,17 +23,27 @@ Example output
 ```bash
 These are the boards connected
 Port                            Type              Board Name FQBN Core
-/dev/cu.usbserial-143120        Serial Port (USB) Unknown
+/dev/cu.usbserial-14310         Serial Port (USB) Unknown
+
+Updating arduino index
+Updating index: package_index.json downloaded
+Updating index: package_esp8266com_index.json downloaded
+Downloading esp8266 dependencies
+esp8266:esp8266@2.7.1 already downloaded
+esp8266:xtensa-lx106-elf-gcc@2.5.0-4-b40a506 already downloaded
+esp8266:mkspiffs@2.5.0-4-b40a506 already downloaded
+esp8266:mklittlefs@2.5.0-4-fe5bb56 already downloaded
+esp8266:python3@3.7.2-post1 already downloaded
 ```
 
-Take note of the port that you want to use, in this case, `/dev/cu.usbserial-143120`
+Take note of the port that you want to use, in this case, `/dev/cu.usbserial-14310`
 
 ## Build & Run the code
 
 Run the following script to compile and run the code
 
 ```bash
-./run.sh "/dev/cu.usbserial-143120" "https://jsonplaceholder.typicode.com/users/1" "SSID" "password"
+./run.sh "/dev/cu.usbserial-14310" "https://example/example-endpoint" "SSID" "password"
 ```
 
 Example output
