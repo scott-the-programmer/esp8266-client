@@ -7,11 +7,12 @@
 class ApiRepository
 {
 public:
-  ApiRepository(char* url);
+  ApiRepository(char *url, char *thumbPrint);
   bool send();
 
 private:
-  char* _url;
+  char *_url;
+  char *_thumbPrint;
 };
 
 #endif

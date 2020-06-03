@@ -13,6 +13,15 @@ echo "const char * ssid=\"$ssid\";" > ./esp8266/values.h
 echo "const char * password=\"$password\";" >> ./esp8266/values.h
 echo "char * endpoint=\"$endpoint\";" > ./esp8266/health-check-endpoint.h
 
+if [[ $endpoint == "https://"* ]]; then
+    domain_name=$(echo $endpoint | awk -F[/:] '{print $4}')
+    thumb_print_result=$(openssl s_client -connect $domain_name:443 -servername $domain_name < /dev/null 2>/dev/null | openssl x509 -fingerprint -noout -in /dev/stdin)
+    thumb_print=$(echo $thumb_print_result | cut -d'=' -f 2)
+    echo "char * thumbPrint=\"$thumb_print\";" >> ./esp8266/health-check-endpoint.h
+else 
+    echo "char * thumbPrint=NULL;" >> ./esp8266/health-check-endpoint.h
+fi;
+
 echo "Compiling code"
 arduino-cli compile --fqbn $board_identifier esp8266
 

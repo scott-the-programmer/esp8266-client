@@ -3,9 +3,10 @@
 #include "Arduino.h"
 #include "api-repository.h"
 
-ApiRepository::ApiRepository(char *url)
+ApiRepository::ApiRepository(char *url, char *thumbPrint)
 {
     _url = url;
+    _thumbPrint = thumbPrint;
 }
 
 bool ApiRepository::send()
@@ -14,7 +15,14 @@ bool ApiRepository::send()
 
     bool ret = false;
 
-    http.begin(_url);
+    if (_thumbPrint)
+    {
+        http.begin(_url, _thumbPrint);
+    }
+    else
+    {
+        http.begin(_url);
+    }
 
     int httpCode = http.GET();
 

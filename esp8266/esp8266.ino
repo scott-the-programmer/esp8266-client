@@ -4,7 +4,7 @@
 #include "health-check-endpoint.h"
 #include "values.h"
 
-ApiRepository api = ApiRepository(endpoint);
+ApiRepository api = ApiRepository(endpoint, thumbPrint);
 
 void setup()
 {
